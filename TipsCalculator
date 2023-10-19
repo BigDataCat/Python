@@ -1,0 +1,45 @@
+import math
+
+def split_check(total, number_of_people):
+    cost_per_person = total / number_of_people
+    return cost_per_person
+
+def calculate_with_tips(total, number_of_people, tip_percent):
+    tip_amount = total * (tip_percent / 100)
+    total_with_tips = total + tip_amount
+    cost_per_person = math.ceil(total_with_tips / number_of_people)
+    return total_with_tips, cost_per_person
+
+total = float(input("Introduceți suma totală: "))
+number_of_people = int(input("Introduceți numărul de persoane: "))
+
+print("Opțiuni pentru tips (în procente):")
+print("1. 5%")
+print("2. 10%")
+print("3. 15%")
+print("4. 20%")
+
+tip_option = int(input("Alegeți opțiunea de tips (1/2/3/4): "))
+
+if tip_option == 1:
+    tip_percent = 5
+elif tip_option == 2:
+    tip_percent = 10
+elif tip_option == 3:
+    tip_percent = 15
+elif tip_option == 4:
+    tip_percent = 20
+else:
+    print("Opțiune invalidă. Se va folosi 10% tips.")
+    tip_percent = 10
+
+total_with_tips, amount_due = calculate_with_tips(total, number_of_people, tip_percent)
+
+total_without_tips = total
+
+# Calculăm totalul cu tips corect, înmulțind amount_due cu number_of_people
+total_with_tips = amount_due * number_of_people
+
+print(f"Fiecare persoană trebuie să plătească: {amount_due:.2f} lei")
+print(f"Totalul cu {tip_percent}% tips rotunjit este: {total_with_tips:.2f} lei")
+print(f"Totalul fără tips este: {total_without_tips:.2f} lei")
